@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 /**
  * @author Nie Weilin
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 public class LegoSetRepository extends Repository<LegoSet> {
@@ -19,36 +19,43 @@ public class LegoSetRepository extends Repository<LegoSet> {
      * @return  Lego object
      *
      */
-    public Stream<LegoSet> printLegoSetWithHighestNumber(){
-       return getAll().stream().
-                sorted(Comparator.comparing(LegoSet::getNumber)).
-                filter(LegoSet->LegoSet.getName()!=null).
-                limit(1);
+    public void printLegoSetWithHighestNumber(){
+        getAll().stream().
+               filter(s->s.getName()!=null&&s.getNumber()!=null).
+                sorted(Comparator.comparing(s->s.getNumber())).
+               limit(1).
+               map(s->s.getName().toString()).
+                forEach(System.out::println);
+
     }
     /**
      *This method return the lego objects which have every information is not null
      * @return Lego object
      *
      */
-    public Stream<LegoSet> printLegoSetWithFullInformation(){
-         return getAll().stream().
-                 filter(Objects::nonNull);
+    public void printLegoSetWithFullInformation(){
+         getAll().stream().
+                 filter(Objects::nonNull)
+                 .map(s->s.getName().toString()).
+                 forEach(System.out::println);
     }
-
     /**
      *This method
      * @param pieces is int
      * @return Lego object
      */
-    public Stream<LegoSet> printLegoSetWith(int pieces){
-        return getAll().stream().
-                filter(legoSet -> legoSet.getPieces()==pieces&&legoSet.getName()!=null);
+    public void printLegoSetWith(int pieces){
+         getAll().stream().
+                filter(legoSet -> legoSet.getPieces()==pieces&&legoSet.getName()!=null).
+                 forEach(System.out::println);
     }
-    public Stream<Boolean> printLegoSetNameStartWith(String pattern){
-        return getAll().stream().
+    public void printLegoSetNameStartWith(String pattern){
+         getAll().stream().
                 map(LegoSet::getName).
                 map(String::toLowerCase).
-                map(s->s.startsWith(pattern));
+                filter(s->s.startsWith(pattern)).
+                 forEach(System.out::println);
+
     }
 
     /**
