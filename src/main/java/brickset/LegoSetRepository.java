@@ -2,7 +2,6 @@ package brickset;
 import repository.Repository;
 import java.util.Comparator;
 import java.util.Objects;
-import java.util.OptionalDouble;
 import java.util.stream.Stream;
 
 /**
