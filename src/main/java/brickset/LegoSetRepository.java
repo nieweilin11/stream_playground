@@ -14,42 +14,53 @@ public class LegoSetRepository extends Repository<LegoSet> {
     public LegoSetRepository() {
         super(LegoSet.class, "brickset.json");
     }
+
     /**
-     * This method return the highest number of Lego
+     * Method_1
+     * This method return the highest number of Lego bricks
      * @return Nothing
-     *
      */
-    public void printLegoSetWithHighestNumber(){
+    public void printWithHighestNumber(){
         getAll().stream().
                filter(s->s.getName()!=null&&s.getNumber()!=null).
                 sorted(Comparator.comparing(LegoSet::getNumber)).
                limit(1).
                map(LegoSet::getName).
                 forEach(System.out::println);
-
     }
     /**
-     *This method return the lego  which have every information is not null
+     * Method_2
+     *This method return the Lego bricks which have every information is not null
      * @return Nothing
-     *
      */
-    public void printLegoSetWithFullInformation(){
+    public void printWithFullInformation(){
          getAll().stream().
                  filter(Objects::nonNull)
                  .map(LegoSet::getName).
                  forEach(System.out::println);
     }
     /**
-     *This method is to find the  Lego which has the same pieces as the input pieces
-     * @param pieces is int
+     * Method_3
+     *This method is used to print the Lego bricks which has the same pieces as the input pieces
+     * @param pieces is an int value
      * @return Nothing
      */
-    public void printLegoSetWith(int pieces){
+    public void printWithPieces(int pieces){
          getAll().stream().
                 filter(legoSet -> legoSet.getPieces()==pieces&&legoSet.getName()!=null).
                  forEach(System.out::println);
     }
-    public void printLegoSetNameStartWith(String pattern){
+
+    /**
+     * Method_4
+     * This method is used to print the Lego brick which name is start with the input Sting
+     * @param pattern is a  String value
+     * @throws IllegalArgumentException if patter contain more one Letter
+     */
+    public void printWithNameStart(String pattern){
+        if(pattern.length()>1){
+            throw new IllegalArgumentException("Enter at last 1 letter");
+        }
          getAll().stream().
                 map(LegoSet::getName).
                 map(String::toLowerCase).
@@ -59,10 +70,11 @@ public class LegoSetRepository extends Repository<LegoSet> {
     }
 
     /**
-     *This method return an average pieces of Lego
+     * Method_5
+     *This method return an average pieces of Lego bricks
      * @return Double value
      */
-    public Double printLegoSetWithAveragePieces(){
+    public Double printWithAveragePieces(){
         return getAll().stream().
                 mapToInt(LegoSet::getPieces).
                 filter(Objects::nonNull).

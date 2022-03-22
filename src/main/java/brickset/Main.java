@@ -7,19 +7,23 @@ package brickset;
 public class Main {
     public static void main(String[] args) {
         LegoSetRepository repository = new <LegoSet>LegoSetRepository();
-        /**
-         *
+        /*
+         *Run the 5 methods
          */
-        System.out.println("Method_1");
-        repository.printLegoSetWithHighestNumber();
-        System.out.println("Method_2");
-        repository.printLegoSetWithFullInformation();
-        System.out.println("Method_3");
-        repository.printLegoSetWith(12);
-        System.out.println("Method_4");
-        repository.printLegoSetNameStartWith("a");
-        System.out.println("Method_5");
-        System.out.println(repository.printLegoSetWithAveragePieces());
-
+        try {
+            System.out.println("Method_1");
+            repository.printWithHighestNumber();
+            System.out.println("Method_2");
+            repository.printWithFullInformation();
+            System.out.println("Method_3");
+            repository.printWithPieces(12);
+            System.out.println("Method_4");
+            repository.printWithNameStart("a");
+            System.out.println("Method_5");
+            System.out.println(repository.printWithAveragePieces());
+        }
+        catch (Exception e){
+            System.out.println("Exception thrown  :" +e);
+        }
     }
 }
