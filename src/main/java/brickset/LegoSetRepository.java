@@ -2,11 +2,11 @@ package brickset;
 import repository.Repository;
 import java.util.Comparator;
 import java.util.Objects;
-import java.util.stream.Stream;
+
 
 /**
  * @author Nie Weilin
- * @version 1.1.0
+ * @version 1.2
  */
 
 public class LegoSetRepository extends Repository<LegoSet> {
@@ -15,34 +15,34 @@ public class LegoSetRepository extends Repository<LegoSet> {
         super(LegoSet.class, "brickset.json");
     }
     /**
-     * This method return the highest number of Lego object
-     * @return  Lego object
+     * This method return the highest number of Lego
+     * @return Nothing
      *
      */
     public void printLegoSetWithHighestNumber(){
         getAll().stream().
                filter(s->s.getName()!=null&&s.getNumber()!=null).
-                sorted(Comparator.comparing(s->s.getNumber())).
+                sorted(Comparator.comparing(LegoSet::getNumber)).
                limit(1).
-               map(s->s.getName().toString()).
+               map(LegoSet::getName).
                 forEach(System.out::println);
 
     }
     /**
-     *This method return the lego objects which have every information is not null
-     * @return Lego object
+     *This method return the lego  which have every information is not null
+     * @return Nothing
      *
      */
     public void printLegoSetWithFullInformation(){
          getAll().stream().
                  filter(Objects::nonNull)
-                 .map(s->s.getName().toString()).
+                 .map(LegoSet::getName).
                  forEach(System.out::println);
     }
     /**
-     *This method
+     *This method is to find the  Lego which has the same pieces as the input pieces
      * @param pieces is int
-     * @return Lego object
+     * @return Nothing
      */
     public void printLegoSetWith(int pieces){
          getAll().stream().
