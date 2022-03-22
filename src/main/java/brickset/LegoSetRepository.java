@@ -21,6 +21,7 @@ public class LegoSetRepository extends Repository<LegoSet> {
      * @return Nothing
      */
     public void printWithHighestNumber(){
+
         getAll().stream().
                filter(s->s.getName()!=null&&s.getNumber()!=null).
                 sorted(Comparator.comparing(LegoSet::getNumber)).
@@ -44,8 +45,12 @@ public class LegoSetRepository extends Repository<LegoSet> {
      *This method is used to print the Lego bricks which has the same pieces as the input pieces
      * @param pieces is an int value
      * @return Nothing
+     * @throws IllegalArgumentException if input less than 0 or greater than 1000000
      */
     public void printWithPieces(int pieces){
+        if(pieces<0||pieces>1000000){
+            throw new IllegalArgumentException("Out of range");
+        }
          getAll().stream().
                 filter(legoSet -> legoSet.getPieces()==pieces&&legoSet.getName()!=null).
                  forEach(System.out::println);
@@ -59,16 +64,14 @@ public class LegoSetRepository extends Repository<LegoSet> {
      */
     public void printWithNameStart(String pattern){
         if(pattern.length()>1){
-            throw new IllegalArgumentException("Enter at last 1 letter");
+            throw new IllegalArgumentException("More than one letter");
         }
          getAll().stream().
                 map(LegoSet::getName).
                 map(String::toLowerCase).
                 filter(s->s.startsWith(pattern)).
                  forEach(System.out::println);
-
     }
-
     /**
      * Method_5
      *This method return an average pieces of Lego bricks
