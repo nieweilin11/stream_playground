@@ -25,7 +25,7 @@ public class LegoSetRepository extends Repository<LegoSet> {
     public boolean printWithPieces(int pieces){
         System.out.println("Method_1");
         return  getAll().stream().
-                allMatch(s -> s.getPieces()==pieces&&s.getName()!=null);
+                anyMatch(s -> s.getPieces()==pieces&&s.getName()!=null);
     }
 
     /**
