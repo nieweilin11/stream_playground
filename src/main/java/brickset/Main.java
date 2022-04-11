@@ -10,15 +10,12 @@ public class Main {
         /*
          *Run the 5 methods
          */
-        try {
-            System.out.println(repository.printWithHighestNumber());
-            System.out.println(repository.printWithFullInformation());
-            System.out.println(repository.printWithPieces(92));
+          System.out.println(repository.printWithPieces(12));
+            System.out.println(repository.printWithAll());
+            System.out.println(repository.printWithTotalPieces());
             System.out.println(repository.printWithNameStart("a"));
-            System.out.println(repository.printWithAveragePieces());
-        }
-        catch (Exception e){
-            System.out.println("Exception thrown  :" +e);
-        }
+            System.out.println(repository.printWithNameIsOodAndEven());
+
+
     }
 }
